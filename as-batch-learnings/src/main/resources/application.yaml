@@ -1,0 +1,44 @@
+spring:
+   batch.jdbc.initialize-schema: always
+   batch.jdbc.platform: org.hibernate.dialect.MariaDB103Dialect
+   sql.init.platform: org.hibernate.dialect.MariaDB103Dialect
+   datasource:
+      url: jdbc:mariadb://valstpdevdmr01a.asp.dhisco.com:3306/batchlearnings
+      username: root
+      password: Dh!$c0@098R@dev@!n
+      driver-class-name: org.mariadb.jdbc.Driver
+      hikari:
+        connection-timeout: 60000
+        maximum-pool-size: 25
+   jpa:
+      show-sql: true
+      open-in-view: false
+      hibernate.ddl-auto: update
+   quartz:
+      properties:
+         org.quartz.dataSource.schedulerDS.driver: org.mariadb.jdbc.Driver
+         org.quartz.dataSource.schedulerDS.maxConnections: 10
+         org.quartz.dataSource.schedulerDS.password: Dh!$c0@098R@dev@!n
+         org.quartz.dataSource.schedulerDS.provider: hikaricp
+         org.quartz.dataSource.schedulerDS.URL: jdbc:mariadb://valstpdevdmr01a.asp.dhisco.com:3306/batchlearnings
+         org.quartz.dataSource.schedulerDS.username: root
+         org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+         org.quartz.jobStore.clusterCheckinInterval: 5000
+         org.quartz.jobStore.dataSource: schedulerDS
+         org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+         org.quartz.jobStore.isClustered: true
+         org.quartz.jobStore.misfireThreshold: 60000
+         org.quartz.jobStore.tablePrefix: QRTZ_
+         org.quartz.jobStore.useProperties: false
+         org.quartz.scheduler.instanceId: AUTO
+         org.quartz.scheduler.instanceIdGenerator.class: com.as.batch.generator.QrtzJobIdGenerator
+         org.quartz.scheduler.instanceName: BatchQrtz
+         org.quartz.threadPool.class: org.quartz.simpl.SimpleThreadPool
+         org.quartz.threadPool.threadCount: 25
+         org.quartz.threadPool.threadPriority: 8
+         org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
+         org.quartz.plugin.shutdownHook.cleanShutdown: TRUE
+      job-store-type: jdbc
+      jdbc.initialize-schema: never
+server:
+  port: 8085
