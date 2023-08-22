@@ -3,9 +3,9 @@ spring:
    batch.jdbc.platform: org.hibernate.dialect.MariaDB103Dialect
    sql.init.platform: org.hibernate.dialect.MariaDB103Dialect
    datasource:
-      url: jdbc:mariadb://valstpdevdmr01a.asp.dhisco.com:3306/batchlearnings
+      url: jdbc:mariadb://localhost:3306/batchlearnings
       username: root
-      password: Dh!$c0@098R@dev@!n
+      password: root
       driver-class-name: org.mariadb.jdbc.Driver
       hikari:
         connection-timeout: 60000
@@ -20,7 +20,7 @@ spring:
          org.quartz.dataSource.schedulerDS.maxConnections: 10
          org.quartz.dataSource.schedulerDS.password: Dh!$c0@098R@dev@!n
          org.quartz.dataSource.schedulerDS.provider: hikaricp
-         org.quartz.dataSource.schedulerDS.URL: jdbc:mariadb://valstpdevdmr01a.asp.dhisco.com:3306/batchlearnings
+         org.quartz.dataSource.schedulerDS.URL: jdbc:mariadb://localhost:3306/batchlearnings
          org.quartz.dataSource.schedulerDS.username: root
          org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
          org.quartz.jobStore.clusterCheckinInterval: 5000

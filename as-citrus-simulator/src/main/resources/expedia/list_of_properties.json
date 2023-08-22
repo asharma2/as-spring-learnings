@@ -1,0 +1,102 @@
+{
+	"entity": [
+		{
+			"resourceId": 2268142,
+			"name": "Eslington Villa",
+			"parnerCode": "ABC123",
+			"status": "Active",
+			"currency": "GBP",
+			"address": {
+				"line1": "199 Some Street",
+				"city": "Glasgow",
+				"postalCode": "PL99A9",
+				"state": "Scotland",
+				"countryCode": "GBR"
+			},
+			"distributionModels": [
+				"ExpediaCollect",
+				"HotelCollect"
+			],
+			"rateAcquisitionType": "SellLAR",
+			"taxInclusive": true,
+			"pricingModel": "PerDayPricing",
+			"baseAllocationEnabled": false,
+			"cancellationTime": "18:00",
+			"timezone": "(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London",
+			"reservationCutOff": {
+				"time": "05:00",
+				"day": "nextDay"
+			},
+			"allowedAgeCategories": [
+				"Adult",
+				"ChildAgeA",
+				"Infant"
+			]
+		},
+		{
+			"resourceId": 2268141,
+			"name": "Hotel Downtown",
+			"parnerCode": "DEF456",
+			"status": "Active",
+			"currency": "CAD",
+			"address": {
+				"line1": "299 Some Other Street",
+				"line2": "with a very long name",
+				"city": "Montreal",
+				"state": "Quebec",
+				"postalCode": "H11H1H",
+				"countryCode": "CAN"
+			},
+			"distributionModels": [
+				"ExpediaCollect"
+			],
+			"rateAcquisitionType": "SellLAR",
+			"taxInclusive": false,
+			"pricingModel": "OccupancyBasedPricing",
+			"baseAllocationEnabled": false,
+			"cancellationTime": "18:00",
+			"timezone": "(GMT-05:00) Eastern Time (US & Canada)",
+			"reservationCutOff": {
+				"time": "23:59",
+				"day": "sameDay"
+			},
+			"allowedAgeCategories": [
+				"Adult",
+				"ChildAgeA",
+				"Infant"
+			]
+		},
+		{
+			"resourceId": 2268140,
+			"name": "Villa by the Sea",
+			"parnerCode": "GHI789",
+			"status": "Active",
+			"currency": "EUR",
+			"address": {
+				"line1": "299 Some Other Street",
+				"city": "Palma de Mallorca",
+				"postalCode": "7610",
+				"countryCode": "ESP"
+			},
+			"distributionModels": [
+				"ExpediaCollect",
+				"HotelCollect"
+			],
+			"rateAcquisitionType": "SellLAR",
+			"taxInclusive": true,
+			"pricingModel": "OccupancyBasedPricing",
+			"baseAllocationEnabled": false,
+			"cancellationTime": "18:00",
+			"timezone": "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+			"reservationCutOff": {
+				"time": "05:00",
+				"day": "nextDay"
+			},
+			"allowedAgeCategories": [
+				"Adult",
+				"ChildAgeA",
+				"Infant"
+			]
+		}
+	]
+}
