@@ -1,4 +1,6 @@
 spring:
+   servlet.multipart.max-file-size: 2MB
+   servlet.multipart.max-request-size: 2MB
    batch.jdbc.initialize-schema: always
    batch.jdbc.platform: org.hibernate.dialect.MariaDB103Dialect
    sql.init.platform: org.hibernate.dialect.MariaDB103Dialect
