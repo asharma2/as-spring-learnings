@@ -14,7 +14,6 @@ import com.as.batch.validator.FileSize;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,9 +30,9 @@ public class EmployeeDocumentController {
 
 	@PostMapping(value = "/employee-v2", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<?> createV2(
-			@RequestPart("employeeId") @NotNull(message = "EmployeeId can't be left blank") Long employeeId,
-			@RequestPart("documentName") @NotNull(message = "Document name can't be left blank") String name,
-			@RequestPart("documentType") @NotNull(message = "Document type can't be left blank") String type,
+			@RequestPart("employeeId") @NotBlank(message = "EmployeeId can't be left blank") Long employeeId,
+			@Valid @RequestPart("documentName") @NotBlank(message = "Document name can't be left blank") String name,
+			@RequestPart("documentType") @NotBlank(message = "Document type can't be left blank") String type,
 			@RequestPart("file") @FileSize(maxSizeInMB = 1) MultipartFile file) {
 		log.info("Payload: {}, File: {}", employeeId + "," + name + "," + type, file);
 		return ResponseEntity.ok().build();

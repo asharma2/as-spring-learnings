@@ -4,11 +4,16 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * https://stackoverflow.com/questions/29677589/proper-mapping-between-java-localdatetime-and-db
+ */
+
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 public class LearningsBatchApp implements ApplicationRunner {
 
 //	@Autowired
