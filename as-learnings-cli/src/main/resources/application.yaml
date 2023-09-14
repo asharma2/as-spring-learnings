@@ -1,0 +1,11 @@
+spring:
+  sql.init.platform: org.hibernate.dialect.MariaDB103Dialect
+  application:
+    name: cli-service
+  datasource:
+    url: jdbc:mariadb://localhost:3310/pushcore
+    username: p2dapp
+    password: pT0d@pP
+    driver-class-name: org.mariadb.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
