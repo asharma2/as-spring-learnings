@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.as.batch.dto.ErrorDTO;
 import com.as.batch.dto.ResponseDTO;
+import com.as.batch.exception.ApplicationException;
 import com.as.batch.exception.BookAlreadyExist;
 import com.as.batch.exception.FieldValidationException;
 import com.as.batch.mapper.DTOMapper;
@@ -69,6 +70,13 @@ public class BookExceptionController {
 		}
 		return new ResponseEntity<>(ResponseDTO.ofFailed(HttpStatus.BAD_REQUEST.value(), Collections.emptyList()),
 				HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = ApplicationException.class)
+	public ResponseEntity<Object> exception(ApplicationException exception) {
+		return new ResponseEntity<>(
+				ResponseDTO.ofFailed(HttpStatus.INTERNAL_SERVER_ERROR.value(), Collections.emptyList()),
+				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

@@ -4,87 +4,87 @@
 <properties>
     <entry key="SQL_HOTEL_SUBSCRIPTION_BY_SGA">
         <![CDATA[
-           select b.code, hp.hotel_code from pushcore.hotel_property_subscription hps 
-            inner join pushcore.hotel_property hp on hp.id = hps.hotel_property_id
-            inner join pushcore.brand b on b.id = hp.brand_id
-            inner join pushcore.channel c on c.id = hps.channel_id
-            inner join pushcore.sga s on c.sga_id = s.id
+           select b.code, hp.hotel_code from onboard.hotel_property_subscription hps 
+            inner join onboard.hotel_property hp on hp.id = hps.hotel_property_id
+            inner join onboard.brand b on b.id = hp.brand_id
+            inner join onboard.channel c on c.id = hps.channel_id
+            inner join onboard.sga s on c.sga_id = s.id
             where s.name = ?
         ]]>
     </entry>
     <entry key="SQL_PRODUCTS_BY_SGA">
         <![CDATA[
-               select b.code, hp.hotel_code, p.rpc, p.rtc, p.rrp from  pushcore.hotel_property_subscription hps
-                inner join pushcore.hotel_property hp on hp.id = hps.hotel_property_id
-                inner join pushcore.brand b on b.id = hp.brand_id
-                inner join pushcore.channel c on c.id = hps.channel_id
-                inner join pushcore.products p on p.property_id = hp.id
-                inner join pushcore.sga s on s.id  = c.sga_id
+               select b.code, hp.hotel_code, p.rpc, p.rtc, p.rrp from  onboard.hotel_property_subscription hps
+                inner join onboard.hotel_property hp on hp.id = hps.hotel_property_id
+                inner join onboard.brand b on b.id = hp.brand_id
+                inner join onboard.channel c on c.id = hps.channel_id
+                inner join onboard.products p on p.property_id = hp.id
+                inner join onboard.sga s on s.id  = c.sga_id
                 where s.name = ?;
         ]]>
     </entry>
     <entry key="SQL_SELECT_CHANNELID_BY_SGA">
         <![CDATA[
-            select c.id from pushcore.channel c 
-            inner join pushcore.sga s on s.id = c.sga_id
+            select c.id from onboard.channel c 
+            inner join onboard.sga s on s.id = c.sga_id
             where s.name=?
         ]]>
     </entry>
     <entry key="SQL_SUPPLIERS_BY_CODE">
         <![CDATA[
-            select id from pushcore.suppliers where UPPER(short_code) = ?
+            select id from onboard.suppliers where UPPER(short_code) = ?
         ]]>
     </entry>
     <entry key="SQL_BRAND_BY_CODE">
         <![CDATA[
-            select id from pushcore.brand where code = ? and supplier_id = ?
+            select id from onboard.brand where code = ? and supplier_id = ?
         ]]>
     </entry>
     <entry key="SQL_PROPERTY_BY_BRANDCODE_AND_HOTELCODE">
         <![CDATA[
-            select hp.id from pushcore.hotel_property hp
-            inner join pushcore.brand b on b.id = hp.brand_id
+            select hp.id from onboard.hotel_property hp
+            inner join onboard.brand b on b.id = hp.brand_id
             where b.code =? and hp.hotel_code=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_BRAND">
         <![CDATA[
-           INSERT INTO pushcore.brand (supplier_id, consumer_count, code, topic) VALUES(?, ?, ?, ?)
+           INSERT INTO onboard.brand (supplier_id, consumer_count, code, topic) VALUES(?, ?, ?, ?)
         ]]>
     </entry>
     <entry key="SQL_SELECT_SGA">
         <![CDATA[
-           SELECT id FROM pushcore.sga WHERE name=?
+           SELECT id FROM onboard.sga WHERE name=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_SGA">
         <![CDATA[
-            INSERT INTO pushcore.sga (name, matching_qualifier) VALUES(?,?);
+            INSERT INTO onboard.sga (name, matching_qualifier) VALUES(?,?);
         ]]>
     </entry>
     <entry key="SQL_GET_PROPERTY">
         <![CDATA[
-            SELECT id FROM pushcore.hotel_property WHERE hotel_code=? AND brand_id=?
+            SELECT id FROM onboard.hotel_property WHERE hotel_code=? AND brand_id=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_PROPERTY">
         <![CDATA[
-            INSERT INTO pushcore.hotel_property (hotel_code, brand_id) VALUES(?, ?)
+            INSERT INTO onboard.hotel_property (hotel_code, brand_id) VALUES(?, ?)
         ]]>
     </entry>
     <entry key="SQL_SELECT_NRC">
         <![CDATA[
-            SELECT id from pushcore.nrc n WHERE n.sga_id=? AND n.rpc=?
+            SELECT id from onboard.nrc n WHERE n.sga_id=? AND n.rpc=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_NRC">
         <![CDATA[
-            INSERT INTO pushcore.nrc (rpc, sga_id, ccn, rpi) VALUES(?, ?, NULL, 'N');
+            INSERT INTO onboard.nrc (rpc, sga_id, ccn, rpi) VALUES(?, ?, NULL, 'N');
         ]]>
     </entry>
     <entry key="SQL_INSERT_SHOP_PROFILE">
         <![CDATA[
-            INSERT INTO pushcore.shopping_profile (sga_id, brand_id, property_id, active, created_ts, modified_ts, 
+            INSERT INTO onboard.shopping_profile (sga_id, brand_id, property_id, active, created_ts, modified_ts, 
             matching_qualifier,maxlos, maxnrcs, maxadults, maxchilds, maxrooms, rolling_interval, 
             distribution_inventory_count) 
             VALUES(?, ?, ?, 1, ?, ?,
@@ -94,89 +94,89 @@
     </entry>
     <entry key="SQL_GET_SHOP_PROFILE">
         <![CDATA[
-            SELECT id FROM pushcore.shopping_profile WHERE sga_id=? AND brand_id=? AND property_id=?
+            SELECT id FROM onboard.shopping_profile WHERE sga_id=? AND brand_id=? AND property_id=?
         ]]>
     </entry>
     <entry key="SQL_UPDATE_SHOP_PROFILE">
         <![CDATA[
-            UPDATE pushcore.shopping_profile set maxadults=?,maxchilds=? where id=?
+            UPDATE onboard.shopping_profile set maxadults=?,maxchilds=? where id=?
         ]]>
     </entry>
     <entry key="SQL_SELECT_SHOP_PROFILE_NRCS">
         <![CDATA[
-           SELECT profile_id FROM pushcore.shopping_profile_rates WHERE profile_id=? AND nrc_id=?
+           SELECT profile_id FROM onboard.shopping_profile_rates WHERE profile_id=? AND nrc_id=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_SHOP_PROFILE_NRCS">
         <![CDATA[
-           INSERT INTO pushcore.shopping_profile_rates (profile_id, active, created_ts, modified_ts, nrc_id) 
+           INSERT INTO onboard.shopping_profile_rates (profile_id, active, created_ts, modified_ts, nrc_id) 
            VALUES(?, 1, ?, ?, ?)
         ]]>
     </entry>
     <entry key="SQL_SELECT_SHOP_PROFILE_GUESTS">
         <![CDATA[
-           SELECT profile_id FROM pushcore.shopping_profile_guests WHERE profile_id=? AND adult=? and child=?
+           SELECT profile_id FROM onboard.shopping_profile_guests WHERE profile_id=? AND adult=? and child=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_SHOP_PROFILE_GUESTS">
         <![CDATA[
-          INSERT INTO pushcore.shopping_profile_guests (profile_id, active, created_ts, modified_ts, adult, child, child_ages) 
+          INSERT INTO onboard.shopping_profile_guests (profile_id, active, created_ts, modified_ts, adult, child, child_ages) 
           VALUES(?, 1, ?, ?, ?, ?, ?)
 
         ]]>
     </entry>    
     <entry key="SQL_SELECT_CHANNEL">
         <![CDATA[
-           SELECT id from pushcore.channel where name=?
+           SELECT id from onboard.channel where name=?
         ]]>
     </entry>    
     <entry key="SQL_SELECT_HOTEL_PROPERTY_SUBSCRIPTION">
         <![CDATA[
-           SELECT id from pushcore.hotel_property_subscription WHERE channel_id=? AND hotel_property_id=?
+           SELECT id from onboard.hotel_property_subscription WHERE channel_id=? AND hotel_property_id=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_HOTEL_PROPERTY_SUBSCRIPTION">
         <![CDATA[
-           INSERT INTO pushcore.hotel_property_subscription (channel_id, hotel_property_id) VALUES(?,?)
+           INSERT INTO onboard.hotel_property_subscription (channel_id, hotel_property_id) VALUES(?,?)
         ]]>
     </entry>
     
     <entry key="SQL_SELECT_PROPERTY_GROUPS">
         <![CDATA[
-           SELECT id from pushcore.property_groups WHERE group_id=? AND property_id=?
+           SELECT id from onboard.property_groups WHERE group_id=? AND property_id=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_PROPERTY_GROUPS">
         <![CDATA[
-           INSERT INTO pushcore.property_groups (group_id, property_id) VALUES(?,?)
+           INSERT INTO onboard.property_groups (group_id, property_id) VALUES(?,?)
         ]]>
     </entry>
     <entry key="SQL_SELECT_PROPERTY_FROM_PROPERTY_GROUPS">
         <![CDATA[
-           SELECT pg.id FROM pushcore.property_groups pg
+           SELECT pg.id FROM onboard.property_groups pg
            join groups g on g.id = pg.group_id
-           join pushcore.hotel_property hp on hp.id = pg.property_id
+           join onboard.hotel_property hp on hp.id = pg.property_id
             WHERE hp.hotel_code=? AND g.name=?
         ]]>
     </entry>
      <entry key="SQL_SELECT_GROUPS">
         <![CDATA[
-           SELECT id FROM pushcore.groups WHERE name=?
+           SELECT id FROM onboard.groups WHERE name=?
         ]]>
     </entry>
     <entry key="SQL_DELETE_SHOP_PROFILE">
         <![CDATA[
-           DELETE FROM pushcore.shopping_profile where id=?
+           DELETE FROM onboard.shopping_profile where id=?
         ]]>
     </entry>
     <entry key="SQL_DELETE_SHOP_PROFILE_GUESTS">
         <![CDATA[
-           DELETE FROM pushcore.shopping_profile_guests where profile_id=?
+           DELETE FROM onboard.shopping_profile_guests where profile_id=?
         ]]>
     </entry>
     <entry key="SQL_DELETE_SHOP_PROFILE_RATES">
         <![CDATA[
-           DELETE FROM pushcore.shopping_profile_rates where profile_id=?
+           DELETE FROM onboard.shopping_profile_rates where profile_id=?
         ]]>
     </entry>      
     <entry key="SQL_DELETE_ADDL_GUEST_ROOM">
@@ -197,22 +197,22 @@
     
     <entry key="SQL_NRC_BY_SUPPLIER_RPC">
         <![CDATA[
-            select rpc from pushcore.supplier_rpc_mapping where supplier_rpc=?
+            select rpc from onboard.supplier_rpc_mapping where supplier_rpc=?
         ]]>
     </entry>
     
     <entry key="SQL_NRC_BY_SUPPLIER_RPC">
         <![CDATA[
-            select rpc from pushcore.supplier_rpc_mapping where supplier_rpc=?
+            select rpc from onboard.supplier_rpc_mapping where supplier_rpc=?
         ]]>
     </entry>
     
     <entry key="SQL_BRAND_BY_HOTEL_CODE">
         <![CDATA[
-            select b.code from pushcore.brand b 
-            join pushcore.hotel_property hp on hp.brand_id = b.id
-            join pushcore.hotel_property_subscription hps on hps.hotel_property_id = hp.id
-            join pushcore.channel c on c.id = hps.channel_id 
+            select b.code from onboard.brand b 
+            join onboard.hotel_property hp on hp.brand_id = b.id
+            join onboard.hotel_property_subscription hps on hps.hotel_property_id = hp.id
+            join onboard.channel c on c.id = hps.channel_id 
             join rezgain_channel_mapping rcm on rcm.channel_id = c.id
             where hp.hotel_code = ? and rcm.rezgain_channel_name = ?;
         ]]>
@@ -232,39 +232,39 @@
     <entry key="SQL_SUBSCRIBED_PROPERTY_FOR_SGA">
         <![CDATA[
             select b.code BRAND,hp.hotel_code PID,s.name SGA,c.name CHANNEL,uum.ud_url UDURL,GROUP_CONCAT(distinct n.rpc order by n.rpc SEPARATOR ',') RATES 
-            from pushcore.shop_profile_property spp
-            inner join pushcore.shop_profile_nrcs spn on spn.shop_profile_id = spp.sp_id
-            inner join pushcore.sga s on s.id = spp.sga_id
-            inner join pushcore.channel c on c.sga_id = spp.sga_id
-            inner join pushcore.brand b on b.id = spp.brand_id
-            inner join pushcore.hotel_property hp on hp.id = spp.property_id
-            inner join pushcore.hotel_property_subscription hps on hps.hotel_property_id =  spp.property_id
-            inner join pushcore.ud_url_mapping uum on uum.sga_id = s.id
-            inner join pushcore.nrc n on spn.nrcs_id = n.id
+            from onboard.shop_profile_property spp
+            inner join onboard.shop_profile_nrcs spn on spn.shop_profile_id = spp.sp_id
+            inner join onboard.sga s on s.id = spp.sga_id
+            inner join onboard.channel c on c.sga_id = spp.sga_id
+            inner join onboard.brand b on b.id = spp.brand_id
+            inner join onboard.hotel_property hp on hp.id = spp.property_id
+            inner join onboard.hotel_property_subscription hps on hps.hotel_property_id =  spp.property_id
+            inner join onboard.ud_url_mapping uum on uum.sga_id = s.id
+            inner join onboard.nrc n on spn.nrcs_id = n.id
             where s.name=:sga 
             group by b.code,hp.hotel_code,s.name,c.name,b.topic
         ]]>
     </entry>
     <entry key="SQL_INSERT_CHOICE_PROP_RATES">
         <![CDATA[
-           INSERT INTO pushcore.choice_prop_rates (date,action,channel,property,rate,description) VALUES(?, ?, ?, ?, ?, ?)
+           INSERT INTO onboard.choice_prop_rates (date,action,channel,property,rate,description) VALUES(?, ?, ?, ?, ?, ?)
         ]]>
     </entry>
     <entry key="SQL_UPDATE_MAXNRCS_BY_SGA_BRAND_PID">
         <![CDATA[
-           update pushcore.shopping_profile set maxnrcs=? where id in (select sp.id 
-            from pushcore.shopping_profile sp
-            inner join pushcore.shopping_profile_rates spr on sp.id = spr.profile_id
-            inner join pushcore.shopping_profile_guests spg on sp.id = spg.profile_id
-            inner join pushcore.sga s on s.id = sp.sga_id
-            inner join pushcore.channel c on c.sga_id = sp.sga_id
-            inner join pushcore.brand b on b.id = sp.brand_id
-            inner join pushcore.hotel_property hp on hp.id = sp.property_id
-            inner join pushcore.nrc n on spr.nrc_id = n.id
-            inner join pushcore.hotel_property_subscription hps on hps.hotel_property_id = hp.id
-            inner join pushcore.rezgain_channel_mapping rcm on rcm.channel_id = c.id
-            inner join pushcore.brand_channel_rule bcr on bcr.brand_id = b.id
-            inner join pushcore.suppliers_config sc on sc.brand_id = b.id
+           update onboard.shopping_profile set maxnrcs=? where id in (select sp.id 
+            from onboard.shopping_profile sp
+            inner join onboard.shopping_profile_rates spr on sp.id = spr.profile_id
+            inner join onboard.shopping_profile_guests spg on sp.id = spg.profile_id
+            inner join onboard.sga s on s.id = sp.sga_id
+            inner join onboard.channel c on c.sga_id = sp.sga_id
+            inner join onboard.brand b on b.id = sp.brand_id
+            inner join onboard.hotel_property hp on hp.id = sp.property_id
+            inner join onboard.nrc n on spr.nrc_id = n.id
+            inner join onboard.hotel_property_subscription hps on hps.hotel_property_id = hp.id
+            inner join onboard.rezgain_channel_mapping rcm on rcm.channel_id = c.id
+            inner join onboard.brand_channel_rule bcr on bcr.brand_id = b.id
+            inner join onboard.suppliers_config sc on sc.brand_id = b.id
             where s.name=? and b.code=? and hp.hotel_code=?
             group by hps.id,hps.hotel_property_id,b.code,hp.id,hp.hotel_code,s.name,c.name,b.topic,
             sp.id,rcm.rezgain_channel_id,rcm.rezgain_channel_name,hps.channel_id
@@ -274,19 +274,19 @@
     <entry key="SQL_HPCM_BY_PID_AND_CHANNEL">
         <![CDATA[
             select hpcm.id  
-            from pushcore.hotel_property_channel_mapping hpcm
+            from onboard.hotel_property_channel_mapping hpcm
             where hpcm.channel_id=? and hpcm.hotel_property_id=?
         ]]>
     </entry>
     <entry key="SQL_INSERT_HPCM">
         <![CDATA[
-            insert into pushcore.hotel_property_channel_mapping(channel_hotel_code, status, channel_id, hotel_property_id)
+            insert into onboard.hotel_property_channel_mapping(channel_hotel_code, status, channel_id, hotel_property_id)
             values (?,?,?,?);
         ]]>
     </entry>
     <entry key="SQL_INSERT_SMA_ANALYTICS">
         <![CDATA[
-           INSERT INTO pushcore.sma_analytics (txn_type, brand, pid, channel_rpc, channel_rtc, 
+           INSERT INTO onboard.sma_analytics (txn_type, brand, pid, channel_rpc, channel_rtc, 
            rpc, rtc, cin, cout, room, adult, child, lta, nights, price, status, error_code, hostname, event_ts) 
            VALUES(:txnType, :brand, :pid, :channelRpc, :channelRtc, :rpc, :rtc, :cin, :cout, 
            :room, :adult, :child, :lta, :nights, :price, :status, :errorCode, :hostname, :eventTs)
@@ -295,10 +295,10 @@
     
     <entry key="SQL_PROPERTY_RATE_COUNT">
         <![CDATA[
-           select hp.hotel_code,sp.maxnrcs, count(*) as ratecount from pushcore.shopping_profile sp 
-            inner join pushcore.sga s on s.id = sp.sga_id
-            inner join pushcore.shopping_profile_rates spr on spr.profile_id = sp.id
-            inner join pushcore.hotel_property hp on hp.id = sp.property_id
+           select hp.hotel_code,sp.maxnrcs, count(*) as ratecount from onboard.shopping_profile sp 
+            inner join onboard.sga s on s.id = sp.sga_id
+            inner join onboard.shopping_profile_rates spr on spr.profile_id = sp.id
+            inner join onboard.hotel_property hp on hp.id = sp.property_id
             where s.name=? and hp.hotel_code=?
             group by sp.id
         ]]>
@@ -306,7 +306,7 @@
     
     <entry key="SQL_UPDATE_MAXNRCS">
         <![CDATA[
-           UPDATE pushcore.shopping_profile set maxnrcs=? where id=?
+           UPDATE onboard.shopping_profile set maxnrcs=? where id=?
         ]]>
     </entry>
     
@@ -327,17 +327,17 @@
 			GROUP_CONCAT(distinct n.rpc order by n.rpc SEPARATOR ',') `RATES`,
 			GROUP_CONCAT(distinct g.name order by g.name SEPARATOR ',') `GROUP`,
 			hpcm.channel_hotel_code `OTAHOTELCODE`
-			from pushcore.shopping_profile sp  
-			inner join pushcore.sga s on s.id= sp.sga_id 
-			inner join pushcore.brand b  on b.id =sp.brand_id 
-			inner join pushcore.hotel_property hp  on hp.id =sp.property_id
-			inner join pushcore.shopping_profile_rates spr on spr.profile_id  = sp.id 
-			inner join pushcore.nrc n  on n.id = spr.nrc_id 
-			inner join pushcore.channel c on c.sga_id  = s.id 
-			inner join pushcore.hotel_property_subscription hps  on hps.hotel_property_id = sp.property_id  and hps.channel_id  = c.id
-			left join pushcore.hotel_property_channel_mapping hpcm  on hpcm.channel_id  = c.id and hpcm.hotel_property_id = sp.property_id 
-			left join pushcore.property_groups pg  on pg.property_id  = sp.property_id 
-			left join pushcore.groups g on g.id = pg.group_id 
+			from onboard.shopping_profile sp  
+			inner join onboard.sga s on s.id= sp.sga_id 
+			inner join onboard.brand b  on b.id =sp.brand_id 
+			inner join onboard.hotel_property hp  on hp.id =sp.property_id
+			inner join onboard.shopping_profile_rates spr on spr.profile_id  = sp.id 
+			inner join onboard.nrc n  on n.id = spr.nrc_id 
+			inner join onboard.channel c on c.sga_id  = s.id 
+			inner join onboard.hotel_property_subscription hps  on hps.hotel_property_id = sp.property_id  and hps.channel_id  = c.id
+			left join onboard.hotel_property_channel_mapping hpcm  on hpcm.channel_id  = c.id and hpcm.hotel_property_id = sp.property_id 
+			left join onboard.property_groups pg  on pg.property_id  = sp.property_id 
+			left join onboard.groups g on g.id = pg.group_id 
 			where s.name =? and b.code =? and hp.hotel_code =?
 			group by sp.id
         ]]>
@@ -345,42 +345,42 @@
     
     <entry key="SQL_SGA_LIST">
         <![CDATA[
-           SELECT name FROM pushcore.sga
+           SELECT name FROM onboard.sga
         ]]>
     </entry>
     
     <entry key="SQL_SUPPLIERS_LIST">
         <![CDATA[
-           SELECT supplier_name ,short_code  from pushcore.suppliers
+           SELECT supplier_name ,short_code  from onboard.suppliers
         ]]>
     </entry>
     
     <entry key="SQL_BRAND_LIST">
         <![CDATA[
            select s.supplier_name, s.short_code, b.code 
-			from pushcore.suppliers s 
-			inner join pushcore.brand b on b.supplier_id  = s.id
+			from onboard.suppliers s 
+			inner join onboard.brand b on b.supplier_id  = s.id
         ]]>
     </entry>
     
     <entry key="SQL_CHANNEL_LIST">
         <![CDATA[
-           select s.name `Sga`,c.name `Channel` from pushcore.channel c inner join pushcore.sga s on s.id = c.sga_id
+           select s.name `Sga`,c.name `Channel` from onboard.channel c inner join onboard.sga s on s.id = c.sga_id
         ]]>
     </entry>
     
     <entry key="SQL_GROUP_LIST">
         <![CDATA[
-           select name from pushcore.groups
+           select name from onboard.groups
         ]]>
     </entry>
     
     <entry key="SQL_HOTEL_LIST_BY_BRAND">
         <![CDATA[
                select s.short_code `SupplierCode`,b.code `BrandCode`, hp.hotel_code `HotelCode`
-				from pushcore.suppliers s 
-				inner join pushcore.brand b on b.supplier_id  = s.id
-				inner JOIN  pushcore.hotel_property hp on hp.brand_id  = b.id
+				from onboard.suppliers s 
+				inner join onboard.brand b on b.supplier_id  = s.id
+				inner JOIN  onboard.hotel_property hp on hp.brand_id  = b.id
 				where b.code = ?
         ]]>
     </entry>
@@ -389,15 +389,15 @@
     <entry key="SQL_ALL_PID_BY_SGA_BRAND">
         <![CDATA[
                 select DISTINCT hp.hotel_code `PID`
-				from pushcore.shopping_profile sp  
-				inner join pushcore.sga s on s.id= sp.sga_id 
-				inner join pushcore.brand b  on b.id =sp.brand_id 
-				inner join pushcore.hotel_property hp  on hp.id =sp.property_id
-				inner join pushcore.shopping_profile_rates spr on spr.profile_id  = sp.id 
-				inner join pushcore.nrc n  on n.id = spr.nrc_id 
-				inner join pushcore.channel c on c.sga_id  = s.id 
-				inner join pushcore.hotel_property_subscription hps  on hps.hotel_property_id = sp.property_id  and hps.channel_id  = c.id
-				left join pushcore.hotel_property_channel_mapping hpcm  on hpcm.channel_id  = c.id and hpcm.hotel_property_id = sp.property_id 
+				from onboard.shopping_profile sp  
+				inner join onboard.sga s on s.id= sp.sga_id 
+				inner join onboard.brand b  on b.id =sp.brand_id 
+				inner join onboard.hotel_property hp  on hp.id =sp.property_id
+				inner join onboard.shopping_profile_rates spr on spr.profile_id  = sp.id 
+				inner join onboard.nrc n  on n.id = spr.nrc_id 
+				inner join onboard.channel c on c.sga_id  = s.id 
+				inner join onboard.hotel_property_subscription hps  on hps.hotel_property_id = sp.property_id  and hps.channel_id  = c.id
+				left join onboard.hotel_property_channel_mapping hpcm  on hpcm.channel_id  = c.id and hpcm.hotel_property_id = sp.property_id 
 				where s.name =? and b.code =?
         ]]>
     </entry>

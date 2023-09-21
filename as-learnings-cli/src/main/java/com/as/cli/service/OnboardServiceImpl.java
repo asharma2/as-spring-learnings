@@ -141,9 +141,9 @@ public class OnboardServiceImpl implements OnboardService {
 				return;
 			}
 
-			List<Long> channelIDs = pushCoreJdbcTemplate.queryForList(SQL_SELECT_CHANNEL, Long.class, "AGODA_ZV");
+			List<Long> channelIDs = pushCoreJdbcTemplate.queryForList(SQL_SELECT_CHANNEL, Long.class, "BKG");
 			if (CollectionUtils.isEmpty(channelIDs)) {
-				log.warn("Channel {} does not exists", "agoda_zv");
+				log.warn("Channel {} does not exists", "BKG");
 				return;
 			}
 

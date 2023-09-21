@@ -3,9 +3,9 @@ spring:
   application:
     name: cli-service
   datasource:
-    url: jdbc:mariadb://localhost:3310/pushcore
-    username: p2dapp
-    password: pT0d@pP
+    url: jdbc:mariadb://localhost:3310/onboard
+    username: root
+    password: root
     driver-class-name: org.mariadb.jdbc.Driver
   main:
     allow-bean-definition-overriding: true

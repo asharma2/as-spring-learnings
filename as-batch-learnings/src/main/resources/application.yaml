@@ -44,3 +44,23 @@ spring:
       jdbc.initialize-schema: never
 server:
   port: 8085
+  
+resilience4j:
+  ratelimiter:
+    instances:
+      bookGetResponseRT:
+        limitForPeriod: 2
+        limitRefreshPeriod: 60s
+        timeoutDuration: 5s
+  circuitbreaker:
+    instances:
+      bookGetResponseCB:
+#        eventConsumerBufferSize: 100
+#        registerHealthIndicator: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 60s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

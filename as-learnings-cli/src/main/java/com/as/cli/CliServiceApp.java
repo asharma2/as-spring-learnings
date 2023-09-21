@@ -31,7 +31,7 @@ public class CliServiceApp implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		String filePath = "D:\\documents\\agoda-choice\\onboarding\\RADISSON_2023-09-11.csv";
+		String filePath = "D:\\documents\\agoda-choice\\onboarding\\RADISSON_2023-09-14.csv";
 		Map<String, List<String[]>> pidData = Files.readAllLines(Paths.get(filePath)).stream()
 				.filter(x -> !x.startsWith("@")).map(x -> x.split(",")).collect(Collectors.groupingBy(x -> x[1]));
 
@@ -62,7 +62,7 @@ public class CliServiceApp implements ApplicationRunner {
 			List<String> rates = data.stream().filter(x -> maps.containsKey(x[2])).map(x -> maps.get(x[2]))
 					.collect(Collectors.toList());
 			Integer los = data.stream().map(x -> Integer.parseInt(x[3])).findFirst().get();
-			Integer nrcs = data.stream().map(x -> Integer.parseInt(x[7])).findFirst().get();
+			Integer nrcs = data.stream().map(x -> Integer.parseInt(x[6])).findFirst().get();
 			String brand = data.stream().map(x -> x[0]).findFirst().get();
 			onboardService.onboardChoice(brand, pid, rates, los, nrcs);
 		});
